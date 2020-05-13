@@ -1,1 +1,1 @@
-# FinalProject
+# Final Project (Lending Club Prediction)
