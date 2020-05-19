@@ -1,6 +1,7 @@
 from flask import Flask,render_template,request
 from prediction import prediction
-from cleaning_data import data_lending
+from data import data_lending
+from plots import count_plots, amount_plots
 
 ## translate Flask to python object
 app = Flask(__name__)
@@ -18,6 +19,12 @@ def index_prediction():
 def data():
     data = data_lending()
     return render_template('table_data.html', data=data)
+
+@app.route('/plots')
+def plots():
+    data1 = count_plots()
+    data2 = amount_plots()
+    return render_template('plots.html', data1=data1, data2=data2)
 
 @app.route('/about')
 def about():
