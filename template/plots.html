@@ -1,0 +1,29 @@
+{% extends 'layout.html'%}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+      <div class="col-sm">
+        <h3>Target Countplot</h3>
+        <div class="chart mt-1" id="dist-type1">
+
+        </div>
+      </div>
+      <div class="col-sm">
+        <h3>Loan Amount Distribution</h3>
+        <div class="chart mt-1" id="dist-type2">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+      var dist_type1 = {{data1 | safe}}
+      var dist_type2 = {{data2 | safe}}
+      Plotly.plot('dist-type1', dist_type1,{})
+      Plotly.plot('dist-type2', dist_type2,{})
+  </script>
+
+{% endblock body %}
