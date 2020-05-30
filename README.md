@@ -210,4 +210,12 @@ From the hyperparameter tuning, below are the results of classification report.
 | --- | --- | --- | --- |
 | Decision Tree Classifier | 0.32 | 0.91 | 0.60 |
 
-## 6. Application
+## 6. Deployment
+The decision tree classifier model that has been fitted are deployed to the dashboard to predict the loan status in the feature. The dashboard is displayed below.
+<img src="./images/1.png">
+<img src="./images/2.png">
+<img src="./images/3.png">
+As we can see, our model managed to predict loan status correctly.
+
+## 7. Conclusion
+Based on the analysis, we can conclude that decision tree classifier is able to predict loan status with 91% recall score. For further analysis, we may need to analyze the ROC-AUC to increase the recall and accuracy score.
