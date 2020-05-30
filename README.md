@@ -4,8 +4,6 @@ LendingClub is the world's largest peer-to-peer lending platform located in San 
 
 # 1. Data Overview
 
-----
------
 Here are the details of this dataset:
 
 <table border="1" class="dataframe">
@@ -160,5 +158,56 @@ Here are the details of this dataset:
   </tbody>
 </table>
 
----
-----
+## 2. Exploratory
+I used several plots to describe the features of this dataset. Here are few figures that I have plotted.
+<img src="./images/countplot.png">
+<img src="./images/loan_amnt.png">
+<img src="./images/corr_ratio.png">
+
+## 3. Data Pre-processing
+For data pre-processing, I analyzed and handled the missing values of each features and creating dummy variables from categorical features using one hot encoding.
+
+## 4. Modelling, Prediction, and Evaluation
+I tried to use several methods to model the loan status, and then use the best method and tune the hyperparameters. Below are the results of precision, recall and accuracy of the base models.
+| Method | Train Recall | Train Precision | Train Accuracy | Test Recall | Test Precision | Test Accuracy |
+| --- | --- | --- | --- | --- | --- | --- |
+| Logistic Regression | 0.593543 | 0.623913 | 0.617882 | 0.579193 | 0.285341 | 0.629282 |
+| Gradient Boosting Classifier | 0.864555 | 0.911097 | 0.890097 | 0.510410 | 0.606373 | 0.837382 |
+| Gaussian Naive Bayes | 0.598168 | 0.660558 | 0.645393 | 0.558245 | 0.308684 | 0.664832 |
+| XGBClassifier | 0.875011 | 0.982945 | 0.929914 | 0.486397 | 0.866834 | 0.883457 |
+| Decision Tree Classifier | 1.000000 | 1.000000 | 1.000000 | 0.594457 | 0.541667 | 0.820024 |
+| RandomForestClassifier | 0.999988 | 1.000000 | 0.999994 | 0.476562 | 0.865862 | 0.881686 |
+
+Based on results above, I chose XGBoost Classifier and Decision Tree to tune the hyperparameters.
+
+## 5. Hyperparameters Tuning
+### a. XGBClassifier
+Below are the hyperparameters of XGBoost Classifier that I have tuned.
+```
+'max_depth':[8,9,10],
+'min_child_weight':[2,3,4]
+'gamma': [0.0, 0.1, 0.2, 0.3, 0.4]
+'colsample_bytree': [0.6, 0.7, 0.8, 0.9]
+'subsample': [0.6, 0.7, 0.8, 0.9]
+'reg_alpha': [1e-05, 0.01, 0.1, 1, 100]
+```
+
+From the hyperparameter tuning, below are the results of classification report.
+| Model | Precision | Recall | Accuracy |
+| --- | --- | --- | --- |
+| XGBClassifier | 0.88 | 0.49 | 0.89 |
+
+### b. Decision Tree Classifier
+Below are the hyperparameters of Decision Tree Classifier that I have tuned.
+```
+'max_depth': np.linspace(1, 32, 32, endpoint=True)
+'min_samples_split': np.linspace(0.001, 0.01, 10, endpoint=True)
+'min_samples_leaf': np.linspace(0.0001, 0.001, 10, endpoint=True)
+'max_features': list(range(1,X_train.shape[1]))
+```
+From the hyperparameter tuning, below are the results of classification report.
+| Model | Precision | Recall | Accuracy |
+| --- | --- | --- | --- |
+| Decision Tree Classifier | 0.32 | 0.91 | 0.60 |
+
+## 6. Application
