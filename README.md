@@ -163,6 +163,8 @@ I used several plots to describe the features of this dataset. Here are few figu
 <img src="./images/countplot.png">
 <img src="./images/loan_amnt.png">
 <img src="./images/corr_ratio.png">
+<img src="./images/download.png">
+
 
 ## 3. Data Pre-processing
 For data pre-processing, I analyzed and handled the missing values of each features and creating dummy variables from categorical features using one hot encoding.
